@@ -61,7 +61,7 @@ const Home = () => {
                   color:'#111827'
                 }
               }}
-              onClick={()=>document.startViewTransition(()=>navigate("/products"))}
+              onClick={()=>navigate("/products")}
             >
               Start Shopping
             </Button>

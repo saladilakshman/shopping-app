@@ -3,7 +3,6 @@ import {
   Stack,
   Typography,
   Box,
-  Avatar,
   AppBar,
   useMediaQuery,
   useTheme,
@@ -29,9 +28,6 @@ import Bag from "./components/paybag";
 import { products } from "./dummy";
 import ClearIcon from "@mui/icons-material/Clear";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Signup from "./components/signup";
-import Login from "./components/login";
-import Userpage from "./components/userpage";
 import SearchIcon from "@mui/icons-material/Search";
 import ListItems from "./components/search";
 export const AppData = createContext();
@@ -423,7 +419,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="wishlist" element={<WishList />} />
           <Route path="paybag" element={<Bag />} />
-          <Route path="signup" element={<Signup />} />
           <Route path=":glasscategory" element={<GlassCategory />} />
           <Route path=":glasscategory/:eachitem" element={<GlassInfo />} />
         </Routes>
