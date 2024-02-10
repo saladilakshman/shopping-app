@@ -13,6 +13,7 @@ import {
   IconButton,
   Button,
   Grid,
+  Box
 } from "@mui/material";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -57,22 +58,33 @@ const WishList = () => {
           {state?.wishlist?.map((item) => {
             const { id, rating, image, price, brand, name, newPrice } = item;
             return (
-              <Grid item key={id} xs={6} sm={6} lg={3}>
+              <Grid item key={id} xs={12} sm={12} lg={3}>
                 <Card id="card"sx={{
                   display: mobile ? "flex" : "",
                   justifyContent: "space-between",
                   alignItems: "center",
                   height: mobile ? "11rem" : "100%",
-                  width:'100%'
+                  minWidth:'100%',
                 }}>
+                   <Box
+                  sx={{
+                    backgroundColor: "#ecebe8",
+                    height: mobile ? "11rem" : "10rem",
+                    p:mobile ? 0.5 : "",
+                  }}
+                  id="box"
+                >
                   <CardMedia
                     component="img"
                     image={image}
-                    height="145"
+                    height={"145"}
                     sx={{
                       backgroundColor: "#ecebe8",
+                      width: mobile ? 150 : "100%",
+                      paddingBlockStart: mobile ? 3 : "",
                     }}
                   />
+                  </Box>
                   <CardContent>
                     <Stack
                       direction="row"
