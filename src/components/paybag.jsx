@@ -12,7 +12,6 @@ import {
   ListItemAvatar,
   Avatar,
 } from "@mui/material";
-import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { AppData } from "../App";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -21,49 +20,11 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 const Bag = () => {
   const { state, mobile, dispatch, priceconversion } = useContext(AppData);
-  const [order, setOrder] = useState();
   const [total, setTotal] = useState(null);
   const navigate = useNavigate();
-  const price = {
-    amount: "723",
-  };
-  function loadScript(src) {
-    const script = document.createElement("script");
-    script.src = src;
-    document.body.appendChild(script);
-  }
+  
 
-  async function razorpay() {
-    await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-    await axios
-      .post("http://localhost:3000/order", { amount: total })
-      .then((res) => {
-        console.log(res.data.id);
-        setOrder(res.data.id);
-      });
-
-    const options = {
-      key: "rzp_test_3ugDu9A7ny7rKe",
-      currency: "INR",
-      amount: price.amount,
-      name: "Learning To Code Online",
-      description: "Test Wallet Transaction",
-      image: "http://localhost:1337/logo.png",
-      order_id: order,
-      handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-      },
-      prefill: {
-        name: "Anirudh Jwala",
-        email: "anirudh@gmail.com",
-        contact: "9999999999",
-      },
-    };
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-  }
+  
   useEffect(() => {
     const prices = state.cartItems.map((prod) => prod.price);
     const quantities = state.cartItems.map((prod) => prod.quantity);
@@ -77,6 +38,64 @@ const Bag = () => {
   }, [state.cartItems, state.quantity]);
   
 
+  const pay_money = () => {
+    const paymentMethods = [
+      {
+        supportedMethods: 'https://bobbucks.dev/pay',
+        data: {
+          supportedNetworks: ['visa', 'mastercard', 'discover'],
+          supportedTypes: ['credit'],
+        },
+      },
+    ];
+    const paymentDetails = {
+      total: {
+        label: 'Total Amount',
+        amount: {
+          currency: 'USD',
+          value: 8.49,
+        },
+      },
+      displayItems: [
+        {
+          label: '15% Discount',
+          amount: {
+            currency: 'USD',
+            value: -1.49,
+          },
+        },
+        {
+          label: 'Tax',
+          amount: {
+            currency: 'USD',
+            value: 0.79,
+          },
+        },
+      ],
+    };
+    const options = {
+      requestPayerName: true,
+      requestPayerPhone: true,
+      requestPayerEmail: true,
+    };
+    const paymentRequest = new PaymentRequest(
+      paymentMethods,
+      paymentDetails,
+      options
+    );
+
+    paymentRequest
+      .show()
+      .then((paymentResponse) => {
+        // close the payment UI
+        paymentResponse.complete().then(() => {
+        });
+      })
+      .catch((err) => {
+        // user closed the UI or the API threw an error
+        console.log('Error:', err.message);
+      });
+  };
   return (
     <Container
       sx={{
@@ -260,7 +279,7 @@ const Bag = () => {
                     },
                    
                   }}
-                  onClick={razorpay}
+                  onClick={pay_money}
                 >
                   Pay money
                 </Button>

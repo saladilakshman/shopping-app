@@ -164,7 +164,7 @@ const GlassCategory = () => {
                 <Box
                   sx={{
                     backgroundColor: "#ecebe8",
-                    height: mobile ? "11rem" : "100%",
+                    height: mobile ? "11rem" : "10rem",
                     p: mobile ? 1 : "",
                   }}
                   id="box"
@@ -179,7 +179,7 @@ const GlassCategory = () => {
                     height={"145"}
                     image={image}
                     sx={{
-                      width: mobile ? 151 : "100%",
+                      width: mobile ? 150 : "100%",
                       paddingBlockStart: mobile ? 3 : "",
                       backgroundColor: "#ecebe8",
                     }}
@@ -240,7 +240,7 @@ const GlassCategory = () => {
                         if (
                           state.cartItems.find((item) => item.name === name)
                         ) {
-                          navigate("paybag");
+                          navigate("/paybag");
                         } else {
                           dispatch({ type: "add-to-bag", payload: name });
                           window.localStorage.setItem(

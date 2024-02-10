@@ -14,6 +14,7 @@ import { categories } from "../categories";
 import { AppData } from "../App";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link,useNavigate } from "react-router-dom";
+
 const Home = () => {
   const { mobile } = useContext(AppData);
   const navigate=useNavigate();

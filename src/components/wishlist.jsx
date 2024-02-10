@@ -58,7 +58,13 @@ const WishList = () => {
             const { id, rating, image, price, brand, name, newPrice } = item;
             return (
               <Grid item key={id} xs={6} sm={6} lg={3}>
-                <Card id="card">
+                <Card id="card"sx={{
+                  display: mobile ? "flex" : "",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  height: mobile ? "11rem" : "100%",
+                  width:'100%'
+                }}>
                   <CardMedia
                     component="img"
                     image={image}
