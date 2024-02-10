@@ -54,7 +54,7 @@ const WishList = () => {
           </Typography>
         </Stack>
       ) : (
-        <Grid container spacing={2}>
+        <Grid container>
           {state?.wishlist?.map((item) => {
             const { id, rating, image, price, brand, name, newPrice } = item;
             return (
@@ -64,13 +64,13 @@ const WishList = () => {
                   justifyContent: "space-between",
                   alignItems: "center",
                   height: mobile ? "11rem" : "100%",
-                  minWidth:'100%',
+                  width:'fit-content',
                 }}>
+                  
                    <Box
                   sx={{
                     backgroundColor: "#ecebe8",
                     height: mobile ? "11rem" : "10rem",
-                    p:mobile ? 0.5 : "",
                   }}
                   id="box"
                 >
@@ -160,6 +160,7 @@ const WishList = () => {
                       </IconButton>
                     </Stack>
                   </CardContent>
+                 
                 </Card>
               </Grid>
             );
