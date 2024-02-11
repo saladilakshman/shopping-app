@@ -52,22 +52,22 @@ const Bag = () => {
       total: {
         label: 'Total Amount',
         amount: {
-          currency: 'USD',
-          value: 8.49,
+          currency: 'INR',
+          value: total,
         },
       },
       displayItems: [
         {
           label: '15% Discount',
           amount: {
-            currency: 'USD',
-            value: -1.49,
+            currency: 'INR',
+            value: 25,
           },
         },
         {
           label: 'Tax',
           amount: {
-            currency: 'USD',
+            currency: 'INR',
             value: 0.79,
           },
         },

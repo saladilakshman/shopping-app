@@ -159,7 +159,7 @@ const GlassCategory = () => {
                   "&:hover": {
                     boxShadow: 4,
                   },
-                  p:1
+                 
                 }}
               >
                 <Box
